@@ -10,8 +10,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.ForeignKey;
 
 
 
@@ -48,6 +50,13 @@ private String cpf;
     
     //criar construtor 
     //depois gera getter e setter
+    
+    //criar uma pessoa do tipo pessoa porque o manytoOne diz que muiitas pessoas
+    //usam um  sexo.
+    @ManyToOne(optional=false)
+    @ForeignKey(name="PessoaSexo")
+    private Pessoa pessoa; //agente sempre utilizava string agora vamos usar uma classe que agente mesmo criou
+    
     
     public Pessoa() {
         

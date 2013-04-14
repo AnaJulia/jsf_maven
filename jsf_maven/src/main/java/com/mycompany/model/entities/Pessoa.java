@@ -8,9 +8,12 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.ForeignKey;
@@ -48,6 +51,13 @@ private String cpf;
     private Date dataDeCadastro; 
     
     
+    //segundo foi esse 
+    @OneToOne(mappedBy="pessoa",fetch=FetchType.LAZY)
+    @ForeignKey(name="EnderecoPessoa")
+    private Endereco endereco;
+    
+    
+    //primeiro fiz esse debaixo depois o decima
     //criar construtor 
     //depois gera getter e setter
     
@@ -55,7 +65,8 @@ private String cpf;
     //usam um  sexo.
     @ManyToOne(optional=false)
     @ForeignKey(name="PessoaSexo")
-    private Pessoa pessoa; //agente sempre utilizava string agora vamos usar uma classe que agente mesmo criou
+    @JoinColumn(name="IdSexo",referencedColumnName="IdSexo")
+    private Sexo sexo; //agente sempre utilizava string agora vamos usar uma classe que agente mesmo criou
     
     
     public Pessoa() {
@@ -118,6 +129,26 @@ private String cpf;
         this.dataDeCadastro = dataDeCadastro;
     }
 
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 5;

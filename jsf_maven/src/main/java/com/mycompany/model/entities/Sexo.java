@@ -32,6 +32,8 @@ public class Sexo implements Serializable{
     //forengnkey é a unica que se pode usar que é fora do jpa,quando estar fazendo mapeamento de dados
     //onetomay uma para muitos e é mapeado pela tabela de gente
     //inserir outro list 
+    //muitos para um=manyToOne (pessoa para sexo)
+    //sexo para pessoa oneToMany(um para muitos)
     //esse codigo abaixo faz parte do relacionamento
    @OneToMany(mappedBy="sexo",fetch= FetchType.LAZY)
     @ForeignKey(name="PessoaSexo")
